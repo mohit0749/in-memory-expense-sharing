@@ -2,7 +2,7 @@ package expense
 
 import "sync/atomic"
 
-var seqNo int64
+var seqNo uint64
 
 type ExpenseType int
 
@@ -12,27 +12,27 @@ var (
 )
 
 type Expense struct {
-	id      int64
-	paidBy  int64
-	forUser int64
+	id      uint64
+	paidBy  uint64
+	forUser uint64
 	amount  float64
 	_type   ExpenseType
 }
 
-func (e Expense) GetId() int64 {
+func (e Expense) GetId() uint64 {
 	return e.id
 }
 
-func NewExpense(paidBy, forUser int64, amount float64, expType ExpenseType) Expense {
-	atomic.AddInt64(&seqNo, 1)
+func NewExpense(paidBy, forUser uint64, amount float64, expType ExpenseType) Expense {
+	atomic.AddUint64(&seqNo, 1)
 	return Expense{seqNo, paidBy, forUser, amount, expType}
 }
 
-func (e *Expense) GetPaidBy() int64 {
+func (e *Expense) GetPaidBy() uint64 {
 	return e.paidBy
 }
 
-func (e *Expense) PaidForUser() int64 {
+func (e *Expense) PaidForUser() uint64 {
 	return e.forUser
 }
 

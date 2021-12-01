@@ -11,9 +11,16 @@ func main() {
 	u2 := app.CreateUser("mohit1", "mohit1@test.com", "9999929192")
 	u3 := app.CreateUser("mohit2", "mohit2@test.com", "9999929193")
 
-	err := app.CreateExpense(u1, []int64{u1, u2, u3}, []float64{90.0}, "equal")
+	err := app.CreateExpense(u1, []uint64{u1, u2, u3}, []float64{90.0}, 2)
 	if err != nil {
 		fmt.Println(err)
 	}
-	app.ShowExpense(u1)
+	app.ShowExpense(u3)
+	fmt.Println("------------------------")
+	err = app.CreateExpense(u3, []uint64{u1, u2, u3}, []float64{90.0}, 2)
+	if err != nil {
+		fmt.Println(err)
+	}
+	app.ShowExpense(u3)
+	fmt.Println("------------------------")
 }
